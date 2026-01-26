@@ -12,7 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('links', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+
+            $table->string('title');
+            $table->text('url');
+            $table->string('shortener_url')->unique();
+            $table->string('slug');
+            $table->enum('visibility', ['public', 'private'])->default('public');
+            $table->string('password')->nullable();
+            $table->timestamp('expires_at')->nullable();
+
+            $table->foreignUuid('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+
             $table->timestamps();
         });
     }
