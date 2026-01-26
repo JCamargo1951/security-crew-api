@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/info', function () {
@@ -8,6 +9,15 @@ Route::get('/info', function () {
         'version' => config('app.version'),
         'environment' => config('app.env'),
     ]);
+});
+
+Route::get('/seed', function (DatabaseSeeder $database) {
+    try {
+        $database->run();
+        return response()->json(['message' => 'Database seeded successfully.'], 200);
+    } catch (\Throwable $th) {
+        return response()->json(['message' => 'Database seeding failed.', 'error' => $th->getMessage()], 500);
+    }
 });
 
 Route::prefix('v1')->group(function () {
