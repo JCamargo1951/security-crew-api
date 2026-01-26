@@ -18,7 +18,6 @@ class Link extends Model
         'url',
         'shortener_url',
         'visibility',
-        'password',
         'expires_at',
         'user_id',
     ];
@@ -38,5 +37,12 @@ class Link extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
     }
 }
