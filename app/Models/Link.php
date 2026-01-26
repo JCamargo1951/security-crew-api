@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -11,7 +11,7 @@ use Spatie\Sluggable\SlugOptions;
 class Link extends Model
 {
     /** @use HasFactory<\Database\Factories\LinkFactory> */
-    use HasFactory, HasUuids, HasSlug;
+    use HasFactory, HasUlids, HasSlug;
 
     protected $fillable = [
         'title',
