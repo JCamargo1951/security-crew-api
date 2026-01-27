@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Link;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Link::factory()->count(10)->create();
-        Link::factory()->protectedLink()->count(5)->create();
+        User::factory()
+            ->count(10)
+            ->has(
+                Link::factory()->protectedLink()->count(1)
+            )
+            ->create()
+            ->each(function ($user) {
+                Link::factory()
+                    ->count(rand(1, 10))
+                    ->for($user)
+                    ->create();
+            });
     }
 }

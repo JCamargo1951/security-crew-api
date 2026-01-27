@@ -45,4 +45,9 @@ class Link extends Model
             'password' => 'hashed',
         ];
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
