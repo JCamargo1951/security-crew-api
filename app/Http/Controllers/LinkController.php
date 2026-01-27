@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
+use App\Http\Resources\LinkResource;
 use App\Models\Link;
 
 class LinkController extends Controller
@@ -13,15 +14,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $links = Link::latest()->paginate(10);
+        return LinkResource::collection($links);
     }
 
     /**
@@ -36,14 +30,6 @@ class LinkController extends Controller
      * Display the specified resource.
      */
     public function show(Link $link)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Link $link)
     {
         //
     }
