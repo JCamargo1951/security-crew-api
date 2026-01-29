@@ -1,10 +1,10 @@
 <?php
-namespace App\Actions\Orders;
+namespace App\Actions\Links;
 
 use App\Interfaces\Links\CreatesLinks;
 use App\Models\Link;
 
-class CreateNewLink implements CreatesLinks
+class CreateLink implements CreatesLinks
 {
     public function handle(array $data): Link
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
 use App\Http\Resources\LinkResource;
+use App\Interfaces\Links\CreatesLinks;
 use App\Models\Link;
 
 class LinkController extends Controller
@@ -21,9 +22,10 @@ class LinkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLinkRequest $request)
+    public function store(StoreLinkRequest $request, CreatesLinks $action)
     {
-        //
+        $link = $action->handle($request->validated());
+        return new LinkResource($link);
     }
 
     /**

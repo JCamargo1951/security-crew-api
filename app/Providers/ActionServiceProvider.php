@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Actions\Orders\CreateNewLink;
+use App\Actions\Links\CreateLink;
 use App\Interfaces\Links\CreatesLinks;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class ActionServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(CreatesLinks::class, CreateNewLink::class);
+        $this->app->bind(CreatesLinks::class, CreateLink::class);
     }
 
     /**
