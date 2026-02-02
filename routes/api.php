@@ -20,8 +20,6 @@ Route::get('/seed', function (DatabaseSeeder $database) {
     }
 });
 
-// require base_path('routes/api/v1/auth.php');
-
 Route::prefix('v1')->group(function () {
     require base_path('routes/api/v1/users.php');
     require base_path('routes/api/v1/links.php');

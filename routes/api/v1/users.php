@@ -1,13 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\UserResource;
+use Illuminate\Http\Request;
 
-Route::get('/users', function () {
-    return response()->json([
-        'users' => [
-            ['id' => 1, 'name' => 'Alice'],
-            ['id' => 2, 'name' => 'Bob'],
-            ['id' => 3, 'name' => 'Charlie'],
-        ],
-    ], 200);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+   return new UserResource($request->user());
 });
