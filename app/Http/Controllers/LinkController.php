@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateLinkRequest;
 use App\Http\Resources\LinkResource;
 use App\Interfaces\Links\CreatesLinks;
 use App\Models\Link;
+use Illuminate\Support\Facades\Gate;
 
 class LinkController extends Controller
 {
@@ -15,7 +16,9 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $links = Link::latest()->paginate(10);
+        if (!Gate::allows('viewAny', Link::class)) abort(403);
+        
+        $links = auth()->user()->links()->paginate(10);
         return LinkResource::collection($links);
     }
 
